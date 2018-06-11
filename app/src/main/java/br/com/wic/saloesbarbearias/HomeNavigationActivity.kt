@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_home_navigation.*
 import kotlinx.android.synthetic.main.app_bar_home_navigation.*
 
@@ -29,6 +31,32 @@ class HomeNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationI
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        /*
+        *EXEMPLO DO LISTVIEW
+        * */
+        // Initializing a list of string
+        val colors = listOf("Red", "Green", "Blue", "Yellow", "Black", "Crimson", "Orange")
+
+        // Create an ArrayAdapter from List
+        val adapter = ArrayAdapter<String>(
+                this, // Context
+                android.R.layout.simple_list_item_1, // Layout
+                colors // List
+        )
+
+        // Finally, data bind the list view object with adapter
+        list_view.adapter = adapter;
+
+        /*EVENTO DE CLICK DO LISTVIEW
+        // Set an item click listener for ListView
+        list_view.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            // Get the selected item text from ListView
+            val selectedItem = parent.getItemAtPosition(position) as String
+
+            // Display the selected item text on TextView
+            text_view.text = "Your favorite color: $selectedItem"
+        */
     }
 
     override fun onBackPressed() {
